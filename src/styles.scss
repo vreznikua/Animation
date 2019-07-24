@@ -76,7 +76,6 @@ body {
   overflow: hidden;
   position: relative;
   &__slides {
-    background: white;
     transition: transform .25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transform: translate(0);
     width: 100%;
@@ -85,18 +84,26 @@ body {
     &--hide {
       transform: translate(-100%);
     }
+    &--prepare {
+      transition: none;
+      transform: translate(100%);
+    }
+    &--show-second {
+      transition: transform .25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      transform: translate(0);
+    }
   }
   &__item {
     position: absolute;
     left: 0;
     top: 0;
     z-index: 0;
-    opacity: 0;
     transition: transform .25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transform-origin: top left;
     transform: scale(1) translate(0);
+    z-index: 0;
     &--active {
-      opacity: 1;
+      z-index: 1;
     }
     &--scale {
       transform: scale(2.5);
@@ -106,7 +113,13 @@ body {
       transform: translate(100%);
     }
 
-    &--translate-back {
+    &--prepare {
+      transition: none;
+      transform: translate(-100%);
+    }
+
+    &--show-second {
+      transition: transform .25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
       transform: translate(0);
     }
   }

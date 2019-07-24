@@ -12,6 +12,8 @@ function App() {
     scale: false,
     hideImage: false,
     slideSecond: false,
+    prepareSecond: false,
+    showSecondImage: false,
     changeText: false,
     showDomain: false,
   });
@@ -22,6 +24,10 @@ function App() {
 
   const hideImage = () => {
     setAnimaton({...StepsAnimation, hideImage: !StepsAnimation.hideImage});
+  };
+
+  const prepareSecond = () => {
+    setAnimaton({...StepsAnimation, prepareSecond: !StepsAnimation.prepareSecond});
   };
 
   const showSecondImage = () => {
@@ -40,6 +46,11 @@ function App() {
     setAnimaton({...StepsAnimation,  changeText: !StepsAnimation. changeText});
   };
 
+  const endChageSlidesScene = () => {
+    setAnimaton({...StepsAnimation, hideImage: false, prepareSecond:false,showSecondImage:false });
+  };
+
+
   const clearState = () => {
     setAnimaton({
       scale: false,
@@ -54,9 +65,14 @@ function App() {
       <aside className="wizard__aside">
         <div className="wizard__form">
           <button className="btn btn-abs btn-mb" onClick={clearState}> CLEAR STATE</button>
-          <button className="btn btn-mb" onClick={scaleToggle}>Scale image</button>
-          <button className="btn btn-mb" onClick={hideImage}>Hide image</button>
+          <div className="btn-mb">
+            <button className="btn" onClick={hideImage}>Hide image</button>
+            <button className="btn" onClick={prepareSecond}>Prepare</button>
+            <button className="btn" onClick={showSecondImage}>Show Second</button>
+            <button className="btn" onClick={endChageSlidesScene}>End</button>
+          </div>
           <button className="btn btn-mb" onClick={changeSlide}>Change slide</button>
+          <button className="btn btn-mb" onClick={scaleToggle}>Scale image</button>
           <button className="btn btn-mb" onClick={showDomainMask}>Show Domain Mask</button>
           <button className="btn" onClick={changeDomainText}>Change Domain text</button>
         </div>
@@ -67,6 +83,8 @@ function App() {
             classNames(
               "slider__slides",
               {[`slider__slides--hide`]: StepsAnimation.hideImage},
+              {[`slider__slides--prepare`]: StepsAnimation.prepareSecond},
+              {[`slider__slides--show-second`]: StepsAnimation.showSecondImage},
             )
           }>
             <div
@@ -75,7 +93,9 @@ function App() {
                   "slider__item",
                   {[`slider__item--active`]: !StepsAnimation.slideSecond},
                   {[`slider__item--scale`]: StepsAnimation.scale},
-                  {[`slider__item--translate`]: StepsAnimation.hideImage}
+                  {[`slider__item--translate`]: StepsAnimation.hideImage},
+                  {[`slider__item--prepare`]: StepsAnimation.prepareSecond},
+                  {[`slider__item--show-second`]: StepsAnimation.showSecondImage},
                   )
               }>
               <SvgComponent />
@@ -91,6 +111,8 @@ function App() {
                   {[`slider__item--active`]: StepsAnimation.slideSecond},
                   {[`slider__item--scale`]: StepsAnimation.scale},
                   {[`slider__item--translate`]: StepsAnimation.hideImage},
+                  {[`slider__item--prepare`]: StepsAnimation.prepareSecond},
+                  {[`slider__item--show-second`]: StepsAnimation.showSecondImage},
                   )
               }>
               <SvgComponent/>
