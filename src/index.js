@@ -54,17 +54,33 @@ function App() {
   const clearState = () => {
     setAnimaton({
       scale: false,
+      hideImage: false,
       slideSecond: false,
+      prepareSecond: false,
+      showSecondImage: false,
       changeText: false,
       showDomain: false,
     });
   };
 
+  const startSlideShow = () => {
+    hideImage()
+    setTimeout(function() {
+      changeSlide()    
+  }, 525); 
+    setTimeout(function() {
+      prepareSecond() 
+  }, 500); 
+
+
+  }
+
   return (
     <div className="wizard">
       <aside className="wizard__aside">
         <div className="wizard__form">
-          <button className="btn btn-abs btn-mb" onClick={clearState}> CLEAR STATE</button>
+          <button className="btn btn-abs" onClick={clearState}> CLEAR STATE</button>
+          <button className="btn btn-abs btn-abs-l" onClick={startSlideShow}>Start animation</button>
           <div className="btn-mb">
             <button className="btn" onClick={hideImage}>Hide image</button>
             <button className="btn" onClick={prepareSecond}>Prepare</button>

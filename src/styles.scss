@@ -67,6 +67,11 @@ body {
   right: 0;
 }
 
+.btn-abs-l {
+  right: initial;
+  left: 0;
+}
+
 .slider {
   flex-grow: 1;
   height: calc(100vh - 100px);
