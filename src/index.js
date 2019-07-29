@@ -16,6 +16,8 @@ function App() {
     showSecondImage: false,
     changeText: false,
     showDomain: false,
+    inputText: 'https://weblium.com',
+    focusedInput: false,
   });
 
   const scaleToggle = () => {
@@ -60,6 +62,8 @@ function App() {
       showSecondImage: false,
       changeText: false,
       showDomain: false,
+      inputText: 'https://weblium.com',
+      focusedInput: false,
     });
   };
 
@@ -70,9 +74,19 @@ function App() {
   }, 525); 
     setTimeout(function() {
       prepareSecond() 
-  }, 500); 
+  }, 500);
+  }
+  
+  const handleInputChange = (event) => {
+    setAnimaton({...StepsAnimation, inputText: event.target.value, focusedInput: true}) 
+  }
 
+  const onFocus = () => {
+    setAnimaton({...StepsAnimation, focusedInput: true}) 
+  }
 
+  const onBlur = () => {
+    setAnimaton({...StepsAnimation, focusedInput: false}) 
   }
 
   return (
@@ -90,7 +104,15 @@ function App() {
           <button className="btn btn-mb" onClick={changeSlide}>Change slide</button>
           <button className="btn btn-mb" onClick={scaleToggle}>Scale image</button>
           <button className="btn btn-mb" onClick={showDomainMask}>Show Domain Mask</button>
-          <button className="btn" onClick={changeDomainText}>Change Domain text</button>
+          <button className="btn btn-mb" onClick={changeDomainText}>Change Domain text</button>
+          <input
+            className="input"
+            type="text" 
+            value={StepsAnimation.inputText}
+            onChange={ e => handleInputChange(e)}
+            onBlur={onFocus}
+            onFocus={onBlur}
+          />
         </div>
       </aside>
       <main className="wizard__main">
@@ -116,8 +138,11 @@ function App() {
               }>
               <SvgComponent />
               <img src={websiteSrc} className="image" />
-              <div className="slider__text-domain">
-                {StepsAnimation.changeText ? 'https://gooooooooooogle.com' : 'https://app.weblium.com'}
+              <div className={classNames(
+                "slider__text-domain",
+                {[`slider__text-domain--active`]: StepsAnimation.focusedInput},
+              )}>
+                {StepsAnimation.inputText}
               </div>
             </div>
             <div
@@ -133,8 +158,11 @@ function App() {
               }>
               <SvgComponent/>
               <img src={website2Src} className="image" />
-              <div className="slider__text-domain">
-                {StepsAnimation.changeText ? 'https://gooooooooooogle.com' : 'https://app.weblium.com'}
+              <div className={classNames(
+                "slider__text-domain",
+                {[`slider__text-domain--active`]: StepsAnimation.focusedInput},
+              )}>
+                {StepsAnimation.inputText}
               </div>
             </div>
           </div>
