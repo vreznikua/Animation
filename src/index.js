@@ -117,7 +117,7 @@ function App() {
       </aside>
       <main className="wizard__main">
         <div className="slider">
-        <svg className="slider__mask" id="slide-mask">
+        <svg className={classNames('slider__mask', {[`slider__item--active`]: StepsAnimation.hideImage})} id="slide-mask">
               <pattern id="p-1" width="100%" height="100%" viewBox="0 0 680 700" patternUnits="userSpaceOnUse">
                 <image xlinkHref="https://i.ytimg.com/vi/L_S6_kvHS04/maxresdefault.jpg" width="100%" height="100%"/>
               </pattern>
@@ -125,25 +125,16 @@ function App() {
               <pattern id="p-2" width="100%" height="100%" viewBox="0 0 680 700" patternUnits="userSpaceOnUse">
                 <image xlinkHref="https://speckyboy.com/wp-content/uploads/2017/09/svg-css-canvas-thumb.jpg" width="100%" height="100%"/>
               </pattern>
-              <pattern id="p-3" width="100%" height="100%" viewBox="0 0 680 700" patternUnits="userSpaceOnUse">
-                <image xlinkHref="https://i.ytimg.com/vi/L_S6_kvHS04/maxresdefault.jpg" width="100%" height="100%"/>
-              </pattern>
-
-              <pattern id="p-4" width="100%" height="100%" viewBox="0 0 680 700" patternUnits="userSpaceOnUse">
-                <image xlinkHref="https://speckyboy.com/wp-content/uploads/2017/09/svg-css-canvas-thumb.jpg" width="100%" height="100%"/>
-              </pattern>
             
             <mask id="m-lines">
-              <line x1="0" y1="0%" y2="100%" class="elem-mask"/>
+              <line x1="0" y1="0%" y2="100%" className={classNames('elem-mask')}/>
             </mask>
             
             <g class="rotation">
               <rect width="100%" height="100%" fill="url(#p-1)" class="rotation__item"/>
               <rect width="100%" height="100%" fill="url(#p-2)" class="rotation__item"/>
-              <rect width="100%" height="100%" fill="url(#p-3)" class="rotation__item"/>
-              <rect width="100%" height="100%" fill="url(#p-4)" class="rotation__item"/>
             </g>
-            
+          
           </svg>
           <div className={
             classNames(

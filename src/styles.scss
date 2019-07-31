@@ -204,15 +204,17 @@ body {
   border-radius: 3px;
 }
 
-
-
 $mask-time: 0.9s;
 
+.slider__item--active {
+  .elem-mask {
+    animation: stroke-width $mask-time infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+}
 
 .elem-mask {
   stroke: #FFF;
-  animation: stroke-width $mask-time infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  }
+}
 
 @keyframes stroke-width {
   from {
@@ -223,9 +225,6 @@ $mask-time: 0.9s;
     }
   }
 
-/* Change Image Animation
--------------------------------*/
-
 $max: 4;
 $duration: $mask-time * $max;//8s;
 $step: $duration/$max;
@@ -235,12 +234,6 @@ $step-perc: percentage(1/$max);
   opacity: 0;
   animation: hide $duration step-end infinite;
   mask: url(#m-lines); 
-  
-  @for $item from 2 through $max {
-    &:nth-child(#{$max}n + #{$item}) {
-    animation-delay: $step*($item - 1);
-    }
-  }
 }
 
 @keyframes hide {
@@ -252,38 +245,9 @@ $step-perc: percentage(1/$max);
     }
 }
 
-/* Progress Bar
--------------------------------*/
-
-.progress {
-  width: 0;
-  height: 5px;
-  background: rgba(154, 205, 50,.5);
-  animation: timer $duration infinite linear;
-}
-
-@keyframes timer {
-  100% {
-    width: 100%;
-  }
-}
-
-/* Common
--------------------------------*/
-
-BODY {
-  background: #FFF linear-gradient(90deg, rgba(154, 205, 50,.3) 50%, rgba(154, 205, 50,.15) 50%);
-  background-size: 2em 2em;
-  perspective: 500px;
-  perspective-origin: center center;
-  }
-
-/* Demo layers
--------------------------------*/
-
 $rotation-height: 270px;
 
 svg {
   width: 100%;
   height: $rotation-height;
-  }
+}
